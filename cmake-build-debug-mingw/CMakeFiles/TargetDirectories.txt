@@ -1,0 +1,3 @@
+D:/STM32/proj/R1/R1/cmake-build-debug-mingw/CMakeFiles/R1.elf.dir
+D:/STM32/proj/R1/R1/cmake-build-debug-mingw/CMakeFiles/edit_cache.dir
+D:/STM32/proj/R1/R1/cmake-build-debug-mingw/CMakeFiles/rebuild_cache.dir
