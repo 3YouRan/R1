@@ -40,6 +40,10 @@
 #include "uart_task.h"
 
 #include "pid_task.h"
+#include "PIDC1.h"
+#include "PIDC.h"
+
+
 extern float Target_Speed;
 extern float Target_Speed_actual;
 extern float MIN_Spe_Increment;
@@ -67,6 +71,22 @@ extern SemaphoreHandle_t g_UART_RX_Semaphore;
 extern SemaphoreHandle_t g_SemaphoreHandle_For_Pid;
 extern void my_Init();
 #define pi 3.1416
+extern float angle;
 
+/* Block states (default storage) */
+extern DW_PIDC PIDC_DW;
 
+/* External inputs (root inport signals with default storage) */
+extern ExtU_PIDC PIDC_U;
+
+/* External outputs (root outports fed by signals with default storage) */
+extern ExtY_PIDC PIDC_Y;
+
+#define param_1 PIDC_U
+#define current_out_1 PIDC_Y.current
+#define target_speed_1 PIDC_U.S_TAR
+
+#define param_2 PIDC1_U
+#define current_out_2 PIDC1_Y.Spe_out1
+#define target_speed_2 PIDC1_U.S_TAR
 #endif //RC_WORK1_ALL_H

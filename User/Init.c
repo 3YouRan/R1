@@ -10,4 +10,7 @@ void my_Init() {
     CAN_Init(&hcan1);
     PID_Init(&pid_speed,&pid_position);
     HAL_TIM_Base_Start_IT(&htim3);
+    PIDC1_initialize();
+    PIDC_initialize();
+
 }

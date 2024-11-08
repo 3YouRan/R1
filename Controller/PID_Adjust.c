@@ -1,8 +1,7 @@
 
-
 #include <stdlib.h>
 #include "all.h"
-
+#include "PIDC.h"
 float Target_Speed;
 float Target_Speed_actual;
 float Target_Position;
@@ -118,21 +117,25 @@ void USART_PID_Adjust(uint8_t Motor_n)
     if(Motor_n == 1)//左边电机
     {
         if(DataBuff[0]=='P' && DataBuff[1]=='1') // 位置环P
-            pid_position.kp = data_Get;
+            param_1.P_P = data_Get;
         else if(DataBuff[0]=='I' && DataBuff[1]=='1') // 位置环I
-            pid_position.ki = data_Get;
+            param_1.P_I = data_Get;
         else if(DataBuff[0]=='D' && DataBuff[1]=='1') // 位置环D
-            pid_position.kd = data_Get;
+            param_1.P_D = data_Get;
         else if(DataBuff[0]=='P' && DataBuff[1]=='2') // 速度环P
-            pid_speed.kp = data_Get;
+            param_1.S_P = data_Get;
         else if(DataBuff[0]=='I' && DataBuff[1]=='2') // 速度环I
-            pid_speed.ki = data_Get;
+            param_1.S_I = data_Get;
         else if(DataBuff[0]=='D' && DataBuff[1]=='2') // 速度环D
-            pid_speed.kd = data_Get;
+            param_1.S_D = data_Get;
         else if((DataBuff[0]=='S' && DataBuff[1]=='p') && DataBuff[2]=='e') //目标速度
-            Target_Speed = data_Get;
+            // param_1.S_TAR = data_Get;
+        {
+            param_2.target_Pos= data_Get;
+            param_1.P_TAR = data_Get;
+        }
         else if((DataBuff[0]=='P' && DataBuff[1]=='o') && DataBuff[2]=='s') //目标位置
-            Target_Position = data_Get;
+            param_1.P_TAR= data_Get;
     }
 //    else if(Motor_n == 0) // 右边电机
 //    {

@@ -49,11 +49,11 @@ else ()
     add_compile_options(-Og -g)
 endif ()
 
-include_directories(Core/Inc Drivers/STM32F4xx_HAL_Driver/Inc Drivers/STM32F4xx_HAL_Driver/Inc/Legacy Middlewares/Third_Party/FreeRTOS/Source/include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F Drivers/CMSIS/Device/ST/STM32F4xx/Include Drivers/CMSIS/Include BSP Controller User Application)
+include_directories(Core/Inc Drivers/STM32F4xx_HAL_Driver/Inc Drivers/STM32F4xx_HAL_Driver/Inc/Legacy Middlewares/Third_Party/FreeRTOS/Source/include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F Drivers/CMSIS/Device/ST/STM32F4xx/Include Drivers/CMSIS/Include Drivers/CMSIS/Core/Include Drivers/CMSIS/DSP/Include PIDC/Inc matlab/simulink/include BSP Controller User Application PIDC1_stm32 PIDC_stm32)
 
-add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx)
+add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -DMEM_UNIT_BYTES -DARM_MATH_CM4 -DMemUnit_T=uint8_T -DMATLAB_PROJECT)
 
-file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "BSP/*.*" "Application/*.*" "Controller/*.*" "User/*.*")
+file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "BSP/*.*" "Application/*.*" "Controller/*.*" "User/*.*" "PIDC_stm32/*.*" "PIDC1_stm32/*.*")
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32F405RGTX_FLASH.ld)
 

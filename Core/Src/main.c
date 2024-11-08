@@ -27,6 +27,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "all.h"
+#include "PIDC.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -96,6 +97,7 @@ int main(void)
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   my_Init();
+  PIDC_initialize();
   /* USER CODE END 2 */
 
   /* Init scheduler */

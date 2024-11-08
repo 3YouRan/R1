@@ -26,6 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "all.h"
+#include "pid_task.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -115,7 +116,7 @@ void MX_FREERTOS_Init(void) {
   /* add threads, ... */
     xTaskCreate(uart_tx_task, "UART_TX_Task", 128, NULL, osPriorityNormal, &g_uart_tx_task_handle);
     xTaskCreate(uart_rx_task, "UART_RX_Task", 128, NULL, osPriorityNormal+2, &g_uart_tx_task_handle);
-  xTaskCreate(pid_task, "PID_Task", 512, NULL, osPriorityHigh, &g_pid_task_handle);
+  // xTaskCreate(pid_task, "PID_Task", 512, NULL, osPriorityHigh, &g_pid_task_handle);
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */
@@ -152,10 +153,15 @@ void StartDefaultTask(void *argument)
 void pid_taskl(void *argument)
 {
   /* USER CODE BEGIN pid_taskl */
+  portTickType CurrentTime_PID;
+
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    CurrentTime_PID=xTaskGetTickCount();
+
+    pidc_task();
+    vTaskDelayUntil(&CurrentTime_PID,5);
   }
   /* USER CODE END pid_taskl */
 }

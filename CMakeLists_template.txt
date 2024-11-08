@@ -48,11 +48,11 @@ else ()
     add_compile_options(-Og -g)
 endif ()
 
-include_directories(${includes} BSP Controller User Application)
+include_directories(${includes} BSP Controller User Application PIDC_stm32 PIDC1_stm32)
 
 add_definitions(${defines})
 
-file(GLOB_RECURSE SOURCES ${sources} "BSP/*.*" "Application/*.*" "Controller/*.*" "User/*.*")
+file(GLOB_RECURSE SOURCES ${sources} "BSP/*.*" "Application/*.*" "Controller/*.*" "User/*.*" "PIDC_stm32/*.*" "PIDC1_stm32/*.*")
 
 set(LINKER_SCRIPT $${CMAKE_SOURCE_DIR}/${linkerScript})
 
